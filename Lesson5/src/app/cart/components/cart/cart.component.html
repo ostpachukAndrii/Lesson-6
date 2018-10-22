@@ -1,0 +1,25 @@
+<!-- <h2>Cart component:</h2>
+<ul>
+    <app-cart-item *ngFor="let component of components" 
+    [cartComponent]="component"></app-cart-item>
+</ul> -->
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 text-center">
+            <h2>Корзина</h2>
+        </div>
+    </div>
+    <app-cart-item *ngFor="let component of components" 
+            [cartComponent]="component"
+            (removeButtonClicked)="onRemoveButtonClicked($event)"
+            ></app-cart-item>
+    <div class="row">
+        <div class="col-md-10">
+            <button class="btn btn-warning pull-right">Оформить</button>
+        </div>
+    </div>
+    <!-- <button class="btn btn-success center-block" (click)="onInfoButtonClicked()">Info</button> -->
+
+   
+
+    
+    

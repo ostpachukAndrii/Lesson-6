@@ -1,0 +1,11 @@
+<div class="row">
+<div class="col-md-6">{{cartComponent.name}}</div>
+<div class="col-md-4">
+    <div class="row">
+    <div class="col-md-3"><button class="btn btn-success center-block" (click)="onMinusButtonClicked()">-</button></div>
+    <div class="col-md-3 text-center"><p>{{cartComponent.quantity}}</p></div>
+    <div class="col-md-3"><button class="btn btn-success center-block" (click)="onPlusButtonClicked()">+</button></div>
+    <div class="col-md-3"><button class="btn btn-danger center-block" (click)="onRemoveButtonClicked()">x</button></div>
+    </div>
+</div>
+</div>
