@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-md-offset-3 col-md-6 text-center">
+        <h2>Книги</h2>
+    </div>
+</div>
+<div class="row">
+    <app-book *ngFor="let book of books" [book]="book" (buyButtonClicked)="onBookAdded($event)"></app-book>
+</div>
+
