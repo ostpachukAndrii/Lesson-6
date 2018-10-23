@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CartComponent } from '../cart/cart.component';
 import { CartItemModel } from '../../models/CartItemModel';
+import { CartService } from 'src/app/shared/services/Cart/cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -12,25 +13,29 @@ export class CartItemComponent implements OnInit {
 
   @Input() cartComponent: CartItemModel;
   @Output() removeButtonClicked = new EventEmitter<CartItemModel>();
+  @Output() minusButtonClicked = new EventEmitter<CartItemModel>();
+  @Output() plusButtonClicked = new EventEmitter<CartItemModel>();
+    
+
   
-  constructor() { }
+  constructor(private cartService: CartService) { }
  
   ngOnInit() { }
 
   onPlusButtonClicked() {
-    this.cartComponent.quantity++;
+    this.plusButtonClicked.emit(this.cartComponent);
   }
 
   onMinusButtonClicked(){
-    if(this.cartComponent.quantity>1)
-    {
-      this.cartComponent.quantity--;
-    }
+    this.minusButtonClicked.emit(this.cartComponent);
+    // this.cartService.decQuantity(this.cartComponent);
   }
 
-  onRemoveButtonClicked(){
+  onRemoveButtonClicked() {
     this.removeButtonClicked.emit(this.cartComponent);
   }
+
+  
 
 
 }

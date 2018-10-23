@@ -4,6 +4,6 @@
     </div>
 </div>
 <div class="row">
-    <app-book *ngFor="let book of books" [book]="book" (buyButtonClicked)="onBookAdded($event)"></app-book>
+    <app-book *ngFor="let book of (booksPromise | async)" [book]="book" (buyButtonClicked)="onBookAdded($event)"></app-book>
 </div>
 

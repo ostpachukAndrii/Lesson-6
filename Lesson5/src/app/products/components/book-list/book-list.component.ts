@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BookModel } from '../../models/BookModel';
+import { BooksService } from 'src/app/shared/services/Books/books.service';
+import { CartService } from 'src/app/shared/services/Cart/cart.service';
+
+
 
 @Component({
   selector: 'app-book-list',
@@ -8,18 +12,20 @@ import { BookModel } from '../../models/BookModel';
 })
 export class BookListComponent implements OnInit {
 
-   public books: Array<BookModel>;
+  public booksPromise: Promise<Array<BookModel>>;
 
-  constructor(){}
+  constructor(private booksSerivce: BooksService, private cartService: CartService)
+  {
+     this.booksPromise = booksSerivce.getBooksAsync();
+  }
   
   ngOnInit() {
-    this.books = [new BookModel(1, 'Сонячна машина ', 375, "https://i1.rozetka.ua/goods/2146720/21120877_images_2146720584.jpg"),
-    new BookModel(2, 'Мертві душі', 275, 'https://i1.rozetka.ua/goods/2146720/21120779_images_2146720150.jpg'),
-    new BookModel(3, 'Сад гетсиманський', 310, 'https://i2.rozetka.ua/goods/2146716/21119771_images_2146716223.jpg')];
+    
   }
 
-  onBookAdded(book: BookModel){
-    console.log(book.name);
+  onBookAdded(book: BookModel) {
+    console.log(book);
+    this.cartService.addToCart(book);
   }
 
 }
