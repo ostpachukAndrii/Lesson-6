@@ -2,8 +2,8 @@
     <img class="center-block" src={{book.img}}>   
     <div class="row">
         <div class="col-md-offset-2 col-md-4 col-xs-12">
-            <h4>{{book.name}}</h4>
-            <span>{{book.price}}</span>
+            <h4>{{book.name  | titlecase}}</h4>
+            <span>{{book.price | currency}}</span>
         </div>
         <div class="col-md-6 col-xs-12">
             <button class="btn btn-success center-block" (click)="onBuyButtonClicked()">Купити</button>
