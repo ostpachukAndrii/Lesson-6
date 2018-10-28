@@ -32,6 +32,7 @@ export class CartService {
       return;
     }
     this.components.value.push(new CartItemModel(book.id, book.name, book.price, book.img, 1));
+    this.components.next(this.components.value);
   }
 
   delFromCart(cartItem: CartItemModel)

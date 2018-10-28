@@ -14,7 +14,7 @@ export class BookListComponent implements OnInit {
 
   public booksPromise: Promise<Array<BookModel>>;
 
-  constructor(private booksSerivce: BooksService, private cartService: CartService)
+  constructor(private booksSerivce: BooksService, private cartService: CartService  )
   {
      this.booksPromise = booksSerivce.getBooksAsync();
   }

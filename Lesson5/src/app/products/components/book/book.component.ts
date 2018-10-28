@@ -12,9 +12,11 @@ export class BookComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
   onBuyButtonClicked() {
+    console.log("buy button");
     this.buyButtonClicked.emit(this.book);
   }
 
