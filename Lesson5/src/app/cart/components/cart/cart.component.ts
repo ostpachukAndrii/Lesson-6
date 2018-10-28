@@ -18,10 +18,8 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cartService.cust.subscribe(comp => { let t = this.cartService.updateTotals();
-                                              this.total=t.sum;
-                                              this.count=t.count;
-                                              this.components = comp; });
+    this.cartService.cust.subscribe(comp => { this.components = comp;
+      this.updateTotal(); });
   }
 
   onRemoveButtonClicked(cartItem: CartItemModel)
@@ -38,6 +36,14 @@ export class CartComponent implements OnInit {
   {
     this.cartService.incQuantity(cartItem);
   }
+
+  updateTotal()
+  {
+    const t = this.cartService.updateTotals();
+    this.total = t.sum;
+    this.count = t.count;
+  }
+
 
   onCreateOrder(){
     console.log(this.components);
