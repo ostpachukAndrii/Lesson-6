@@ -1,11 +1,75 @@
-
-<div>
-  process-order-form works!
-
-  <input value={{FullName}} placeholder="FIO" type="text">
-  <input value={{Email}} placeholder="email" type="text">
-  <input value={{Phone}} placeholder="phone" type="text">
-  <button>Send</button>
+<div class="row">
+        <div class="col-md-offset-3 col-md-6 text-center">
+            <h2>Форма замовлення</h2>
+        </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group">
+          <label for="fullName">ФІО</label>
+          <input 
+           type="text"
+           id="fullName" 
+           formControlName="fullName"
+           class="form-control">
+           <span *ngIf="!orderForm.get('fullName').valid && orderForm.get('fullName').touched">
+            Довжина ФІО повинна становити від 5 до 50 символів
+           </span>
+        </div>
 
- 
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+            type="text" 
+            id="email" 
+            formControlName="email"
+            class="form-control">
+            <span *ngIf="!orderForm.get('email').valid && orderForm.get('email').touched">
+            Невірно вказана адреса електронної пошти
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Телефон</label>
+            <input 
+            type="text" 
+            id="phone" 
+            formControlName="phone"
+            class="form-control">
+            <span *ngIf="!orderForm.get('phone').valid && orderForm.get('phone').touched">
+            Невірно вказаний номер телефону
+             </span>
+        </div>
+
+        <div class="form-group">
+                <label for="deliveryDate">Дата доставки:</label>
+                <input appDeliveryDateValidator
+                type="date" 
+                id="deliveryDate" 
+                formControlName="deliveryDate"
+                class="form-control">
+                <span *ngIf="!orderForm.get('deliveryDate').valid && orderForm.get('deliveryDate').touched">
+                Невірно вказана дата доставки
+                 </span>
+            </div>
+
+        <div class="radio" *ngFor="let payType of payTypes">
+          <label>
+            <input 
+            type="radio" 
+           
+            formControlName="payType"
+            [value]="payType"> {{ payType }}
+          </label>
+        </div>
+
+        
+        <button class="btn btn-primary" type="submit">Замовити</button> 
+        <div *ngIf="!orderForm.valid && orderForm.touched">
+                Не всі обов'язкові поля заповнені або заповнені не правильно 
+        </div>
+        </form>
+    </div>
+</div>
